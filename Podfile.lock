@@ -1,0 +1,48 @@
+PODS:
+  - AFNetworking (2.5.4):
+    - AFNetworking/NSURLConnection (= 2.5.4)
+    - AFNetworking/NSURLSession (= 2.5.4)
+    - AFNetworking/Reachability (= 2.5.4)
+    - AFNetworking/Security (= 2.5.4)
+    - AFNetworking/Serialization (= 2.5.4)
+    - AFNetworking/UIKit (= 2.5.4)
+  - AFNetworking/NSURLConnection (2.5.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.4)
+  - AFNetworking/Security (2.5.4)
+  - AFNetworking/Serialization (2.5.4)
+  - AFNetworking/UIKit (2.5.4):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - EGOCache (2.1.3)
+  - Reveal-iOS-SDK (1.5.1)
+  - SXDebuger (0.0.1)
+  - SXModules (0.3.4):
+    - AFNetworking (~> 2.5)
+    - EGOCache (~> 2.1)
+
+DEPENDENCIES:
+  - Reveal-iOS-SDK
+  - SXDebuger (from `./SXDebuger.podspec`)
+  - SXModules (from `./SXModules.podspec`)
+
+EXTERNAL SOURCES:
+  SXDebuger:
+    :path: "./SXDebuger.podspec"
+  SXModules:
+    :path: "./SXModules.podspec"
+
+SPEC CHECKSUMS:
+  AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  EGOCache: f0295dbe041156acabd39021354ad1045ee49e72
+  Reveal-iOS-SDK: c9c55cad2729c85f6ced415f1b21857c9a2d8ef9
+  SXDebuger: 59d4bc80e7d063e60bf16cd87dc416c96fc76371
+  SXModules: 9aff9d5954001e9ea4488509d86e85af80a4acc5
+
+COCOAPODS: 0.37.2
