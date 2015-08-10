@@ -1,7 +1,7 @@
-# SXModules
+# XModules
 项目常用组件模块
 
 #Usage
 
-    pod 'SXModules', :podspec => 'https://raw.github.com/shixiancom/SXModules/master/SXModules.podspec'
-    pod 'SXDebuger', :podspec => 'https://raw.github.com/shixiancom/SXModules/master/SXDebuger.podspec', :configurations => ['Debug']
+    pod 'XModules', :podspec => 'https://raw.github.com/ibcker/XModules/master/XModules.podspec'
+    pod 'XDebuger', :podspec => 'https://raw.github.com/ibcker/XModules/master/XDebuger.podspec', :configurations => ['Debug']
