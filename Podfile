@@ -2,8 +2,8 @@
 # platform :ios, '6.0'
 
 target 'Demo' do
-    pod 'SXModules', :path => './XModules.podspec'
-    pod 'SXDebuger', :path => './XDebuger.podspec', :configurations => ['Debug']
+    pod 'XModules', :path => './XModules.podspec'
+    pod 'XDebuger', :path => './XDebuger.podspec', :configurations => ['Debug']
     pod 'Reveal-iOS-SDK', :configurations => ['Debug']
 
 end

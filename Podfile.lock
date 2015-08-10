@@ -22,27 +22,27 @@ PODS:
     - AFNetworking/NSURLSession
   - EGOCache (2.1.3)
   - Reveal-iOS-SDK (1.5.1)
-  - SXDebuger (0.0.1)
-  - SXModules (0.3.4):
+  - XDebuger (0.0.1)
+  - XModules (0.4.8):
     - AFNetworking (~> 2.5)
     - EGOCache (~> 2.1)
 
 DEPENDENCIES:
   - Reveal-iOS-SDK
-  - SXDebuger (from `./SXDebuger.podspec`)
-  - SXModules (from `./SXModules.podspec`)
+  - XDebuger (from `./XDebuger.podspec`)
+  - XModules (from `./XModules.podspec`)
 
 EXTERNAL SOURCES:
-  SXDebuger:
-    :path: "./SXDebuger.podspec"
-  SXModules:
-    :path: "./SXModules.podspec"
+  XDebuger:
+    :path: "./XDebuger.podspec"
+  XModules:
+    :path: "./XModules.podspec"
 
 SPEC CHECKSUMS:
   AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
   EGOCache: f0295dbe041156acabd39021354ad1045ee49e72
   Reveal-iOS-SDK: c9c55cad2729c85f6ced415f1b21857c9a2d8ef9
-  SXDebuger: 59d4bc80e7d063e60bf16cd87dc416c96fc76371
-  SXModules: 9aff9d5954001e9ea4488509d86e85af80a4acc5
+  XDebuger: 3e15c9b351b1d11324f7a5e8c51891263be808e2
+  XModules: 4457b55dd9f337ab55d5c3a13d1267304550d1f9
 
 COCOAPODS: 0.37.2
