@@ -36,7 +36,7 @@
 - (SXTableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[SXTableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+        _tableView = [[SXTableView alloc] initWithFrame:self.view.bounds style:self.tableViewStyle];
         _tableView.autoresizingMask=UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         _tableView.contentInset=UIEdgeInsetsMake([self autoInsetsTop], 0, [self autoInsetsBottom], 0);
         _tableView.scrollIndicatorInsets=_tableView.contentInset;
