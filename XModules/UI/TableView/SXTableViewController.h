@@ -23,6 +23,9 @@
 @property (nonatomic,assign)BOOL needPull2Refresh;
 @property (nonatomic,assign)BOOL needLoadMore;
 
+- (Class)dataSourceClass;
+- (Class)viewModelClass;
+
 - (UITableViewStyle)tableViewStyle;//default UITableViewStylePlain
 - (CGFloat)autoInsetsBottom;
 - (CGFloat)autoInsetsTop;

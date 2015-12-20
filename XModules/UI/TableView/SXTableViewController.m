@@ -107,11 +107,21 @@
     updateCacheTime(self.viewModel.keyForDiskCache);
 }
 
+- (Class)dataSourceClass
+{
+    return SXTableViewDataSource.class;
+}
+
+- (Class)viewModelClass
+{
+    return SXViewModel.class;
+}
+
 -(SXTableViewDataSource *)dataSource
 {
     if (!_dataSource) {
-        _dataSource = [[SXTableViewDataSource alloc] initWithTableView:self.tableView];
-        _dataSource.delegate=(id)self.tableView;
+        _dataSource = [[self.dataSourceClass alloc] initWithTableView:self.tableView];
+        _dataSource.delegate=self;
     }
     return _dataSource;
 }
@@ -119,7 +129,7 @@
 - (SXViewModel *)viewModel
 {
     if (!_viewModel) {
-        _viewModel=[[SXViewModel alloc] init];
+        _viewModel=[[self.viewModelClass alloc] init];
     }
     return _viewModel;
 }
