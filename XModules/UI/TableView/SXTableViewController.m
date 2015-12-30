@@ -12,12 +12,6 @@
 
 @implementation SXTableViewController
 
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
 - (CGFloat)autoInsetsTop
 {
     return self.navigationController.navigationBar.isTranslucent?64:0;
@@ -33,17 +27,28 @@
     return UITableViewStylePlain;
 }
 
+- (void)loadView
+{
+    [super loadView];
+    [self configTableView];
+}
+
 - (SXTableView *)tableView
 {
     if (!_tableView) {
         _tableView = [[SXTableView alloc] initWithFrame:self.view.bounds style:self.tableViewStyle];
-        _tableView.autoresizingMask=UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-        _tableView.contentInset=UIEdgeInsetsMake([self autoInsetsTop], 0, [self autoInsetsBottom], 0);
-        _tableView.scrollIndicatorInsets=_tableView.contentInset;
         [self.view addSubview:_tableView];
-        _tableView.delegate=self;
+        [self configTableView];
     }
     return _tableView;
+}
+
+- (void)configTableView
+{
+    _tableView.autoresizingMask=UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+    _tableView.contentInset=UIEdgeInsetsMake([self autoInsetsTop], 0, [self autoInsetsBottom], 0);
+    _tableView.scrollIndicatorInsets=_tableView.contentInset;
+    _tableView.delegate=self;
 }
 
 - (void)viewDidLoad
@@ -149,11 +154,11 @@
     [self.refreshView removeFromSuperview];
     self.refreshView=nil;
     
-    self.tableView.delegate=nil;
-    self.tableView.dataSource=nil;
-    self.tableView=nil;
-    self.viewModel=nil;
-    self.dataSource=nil;
+    _tableView.delegate=nil;
+    _tableView.dataSource=nil;
+    _tableView=nil;
+    _viewModel=nil;
+    _dataSource=nil;
     
     //    [(AppDelegate *)[[UIApplication sharedApplication] delegate] removeObserver:self forKeyPath:kIsLeftPathOpen];
 }

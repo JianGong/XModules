@@ -17,7 +17,4 @@
 @end
 
 @interface SXTableView : UITableView
-
-
-
 @end

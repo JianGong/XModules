@@ -16,3 +16,5 @@
 @end
 
 extern SXCellObj *SXCellMake(Class cellClass, id content, id ext);
+
+//extern SXCellObj *SXCellMakeWithXib(Class cellClass, id content, id ext);

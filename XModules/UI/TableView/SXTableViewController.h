@@ -14,7 +14,7 @@
 #import "SXViewModel.h"
 
 @interface SXTableViewController : SXViewController<UITableViewDelegate,SRRefreshDelegate,WLoadMoreDelegate,SXTableViewDataSourceDelegate>
-@property (nonatomic,strong)SXTableView *tableView;
+@property (nonatomic,strong)IBOutlet SXTableView *tableView;
 @property (nonatomic,strong)SRRefreshView *refreshView;
 @property (nonatomic,strong)WLoadMore *loadMoreControl;
 @property (nonatomic,strong)SXTableViewDataSource *dataSource;

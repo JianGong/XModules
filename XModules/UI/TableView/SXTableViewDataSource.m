@@ -84,13 +84,18 @@
     return [self.objs count];
 }
 
+- (SXTableViewCell *)sxtableView:(SXTableView *)tableView cellForObj:(SXCellObj *)obj
+{
+    return [[obj.clazz alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:obj.identifier];
+}
+
 - (UITableViewCell *)tableView:(SXTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SXCellObj *obj=self.objs[indexPath.section][indexPath.row];
     NSString *identifier = obj.identifier;
     SXTableViewCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
-        cell = [[obj.clazz alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
+        cell = [self sxtableView:tableView cellForObj:obj];
         [self tableView:tableView onCreateCell:cell atIndexPath:indexPath];
         #if debug_count_cells
            if (!_debugCellCounter[identifier]) {

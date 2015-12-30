@@ -19,7 +19,7 @@ SXCellObj *SXCellMake(Class cellClass, id content, id ext)
 {
     NSCAssert(cellClass, @"cell calss can't be nil");
     SXCellObj *item = [[SXCellObj alloc] init];
-    item.identifier=NSStringFromClass(cellClass);
+    item.identifier=[NSStringFromClass(cellClass) componentsSeparatedByString:@"."].lastObject; //for remove swift class module name
     item.clazz=cellClass;
     item.content=content;
     item.ext=ext;
