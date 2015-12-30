@@ -7,6 +7,7 @@
 //
 
 #import "XVerticalButton.h"
+#import "UIView+Sizes.h"
 
 @implementation XVerticalButton
 
