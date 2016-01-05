@@ -23,18 +23,25 @@ const CGFloat SXDefaultHeight = 44;
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        self.selectBackgroundColor=[UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:1];
-#warning ios 5下设置背景色问题，有待查找原因
-        self.backgroundColor=[UIColor whiteColor];
         [self onInitialize];
-        _bottomLinePadding=0;
-        _bottomLineWeight=0.5;
     }
     return self;
 }
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self onInitialize];
+}
+
 - (void)onInitialize
-{}
+{
+    self.selectBackgroundColor=[UIColor colorWithRed:0.85 green:0.85 blue:0.85 alpha:1];
+#warning ios 5下设置背景色问题，有待查找原因
+    self.backgroundColor=[UIColor whiteColor];
+    _bottomLinePadding=0;
+    _bottomLineWeight=0.5;
+}
 
 - (void)setBottomLinePadding:(CGFloat)bottomLinePadding
 {
@@ -107,7 +114,7 @@ const CGFloat SXDefaultHeight = 44;
 - (void)setShowBottomLine:(BOOL)showBottomLine
 {
     _showBottomLine=showBottomLine;
-    self.bottomLine.hidden=!showBottomLine;
+    _bottomLine.hidden=!showBottomLine;
     if (showBottomLine) {
         UIEdgeInsets inset = self.bottomLineInset;
         self.bottomLine.frame=CGRectMakeByXBootom(inset.left, self.height-inset.bottom, self.width-inset.right-inset.left, _bottomLineWeight);

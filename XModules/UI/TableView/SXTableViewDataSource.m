@@ -9,10 +9,31 @@
 #import "SXTableViewDataSource.h"
 #import "SXTableView.h"
 #import "UIView+Sizes.h"
+#import <objc/runtime.h>
 
 #ifdef DEBUG
 #define debug_count_cells 0
 #endif
+
+@interface SXTableViewCell(xib_fix)
+@property (nonatomic,assign)BOOL is_created;
+@end
+
+@implementation SXTableViewCell(xib_fix)
+
+const char is_created;
+
+- (void)setIs_created:(BOOL)is_created
+{
+    objc_setAssociatedObject(self, &is_created, @(is_created), OBJC_ASSOCIATION_RETAIN);
+}
+
+- (BOOL)is_created
+{
+    return [objc_getAssociatedObject(self, &is_created) boolValue];
+}
+
+@end
 
 @interface SXTableViewDataSource()<SXTableViewCellDelegate>
 
@@ -96,7 +117,6 @@
     SXTableViewCell *cell = (id)[tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell) {
         cell = [self sxtableView:tableView cellForObj:obj];
-        [self tableView:tableView onCreateCell:cell atIndexPath:indexPath];
         #if debug_count_cells
            if (!_debugCellCounter[identifier]) {
                _debugCellCounter[identifier]=@(1);
@@ -107,6 +127,12 @@
            NSLog(@"sxtablew initd %@, all cells:%@",identifier,[[_debugCellCounter allKeys] componentsJoinedByString:@","]);
         #endif
     }
+    
+    if(!cell.is_created){
+        [self tableView:tableView onCreateCell:cell atIndexPath:indexPath];
+        cell.is_created=YES;
+    }
+    
     cell.indexPath=indexPath;
     [self tableView:tableView onConfigCell:cell atIndexPath:indexPath];
     id ext = [self extForCellAtIndexPath:indexPath];
