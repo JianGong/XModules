@@ -10,7 +10,8 @@ Pod::Spec.new do |s|
   s.homepage     = "http://ibcker.me"
   s.license      = 'Apache'
   s.author       = { "ibcker" => "happymiyu@gmail.com" }
-  s.source       = { :git => "https://github.com/ibcker/XModules.git"}
+  s.source       = { :git => "https://github.com/ibcker/XModules.git",:tag => '0.5.5'}
+
   s.source_files  = 'XModules/**/*.{h,m}'
   s.resource     = 'XModules/**/*.bundle'
   s.exclude_files = 'XModules/debuger'
