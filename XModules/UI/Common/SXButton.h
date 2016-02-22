@@ -9,5 +9,4 @@
 #import <UIKit/UIKit.h>
 
 @interface SXButton : UIButton
-@property(nonatomic,strong)void (^onTouchUpInside)(SXButton *bton);
 @end

@@ -29,13 +29,6 @@
     [self addAction];
 }
 
-- (void)didMoveToSuperview
-{
-    [super didMoveToSuperview];
-    self.frame=self.superview.bounds;
-    self.autoresizingMask=UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-}
-
 - (void)addAction
 {
     self.holder=[[UITextField alloc] init];

@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "XModules"
-  s.version      = "0.5.5"
+  s.version      = "0.6.0"
   s.summary      = "工厂化模组"
   s.description  = <<-DESC
                    *目常用组件
@@ -22,6 +22,7 @@ Pod::Spec.new do |s|
 
   s.dependency 'AFNetworking', '~>2.5'
   s.dependency 'EGOCache', '~>2.1'
-
+  s.dependency 'SVProgressHUD'
+  s.dependency 'SDWebImage', '~>3.7'
 
 end

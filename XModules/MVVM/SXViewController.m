@@ -33,9 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (!self.view.backgroundColor){
-        self.view.backgroundColor = [UIColor whiteColor];
-    }
+    self.view.backgroundColor=[UIColor whiteColor];
     if (self.needLeftPresentCloseButton&&self.isPresentModal&&!self.navigationItem.leftBarButtonItem) {
         UIButton *closeButton = [[SXButton alloc] initWithFrame:CGRectMake(0, 0, 49, 40)];
         [closeButton setTitle:SXLocalString(@"nav->button->关闭") forState:UIControlStateNormal];

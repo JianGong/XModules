@@ -27,8 +27,6 @@
 ///init the data tableview datasource
 - (id)initWithTableView:(UITableView *)tableView;
 
-- (SXTableViewCell *)sxtableView:(SXTableView *)tableView cellForObj:(SXCellObj *)obj;
-
 - (CGFloat)heightForCellAtIndexPath:(NSIndexPath *)indexPath;
 - (id)extForCellAtIndexPath:(NSIndexPath *)indexPath;
 

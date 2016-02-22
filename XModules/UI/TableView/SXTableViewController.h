@@ -14,7 +14,7 @@
 #import "SXViewModel.h"
 
 @interface SXTableViewController : SXViewController<UITableViewDelegate,SRRefreshDelegate,WLoadMoreDelegate,SXTableViewDataSourceDelegate>
-@property (nonatomic,strong)IBOutlet SXTableView *tableView;
+@property (nonatomic,strong)SXTableView *tableView;
 @property (nonatomic,strong)SRRefreshView *refreshView;
 @property (nonatomic,strong)WLoadMore *loadMoreControl;
 @property (nonatomic,strong)SXTableViewDataSource *dataSource;
@@ -23,15 +23,13 @@
 @property (nonatomic,assign)BOOL needPull2Refresh;
 @property (nonatomic,assign)BOOL needLoadMore;
 
-- (Class)dataSourceClass;
-- (Class)viewModelClass;
-
 - (UITableViewStyle)tableViewStyle;//default UITableViewStylePlain
 - (CGFloat)autoInsetsBottom;
 - (CGFloat)autoInsetsTop;
 
-- (void)loadData;
-- (void)reloadData;
+- (void)loadData:(void(^)(void))complete;
+- (void)reloadData:(void(^)(void))complete;
+
 - (void)reloadTableView;
 - (NSArray *)buildCellObjes:(NSArray *)res;
 

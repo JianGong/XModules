@@ -16,18 +16,8 @@
     if (self) {
         [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self setTitleColor:[UIColor colorWithHex:0xc0e1f2] forState:UIControlStateHighlighted];
-        
-        [self addTarget:self action:@selector(_onTouchUpInside) forControlEvents:UIControlEventTouchUpInside];
     }
-    
     return self;
-}
-
-- (void)_onTouchUpInside
-{
-    if (self.onTouchUpInside) {
-        self.onTouchUpInside(self);
-    }
 }
 
 - (void)setEnabled:(BOOL)enabled

@@ -36,16 +36,6 @@
     return self;
 }
 
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
-    self.showsVerticalScrollIndicator=NO;
-    self.separatorStyle=UITableViewCellSeparatorStyleNone;
-    if (self.backgroundColor == nil) {
-        self.backgroundColor = [UIColor whiteColor];
-    }
-}
-
 - (id)initWithFrame:(CGRect)frame
 {
     self=[self initWithFrame:frame style:UITableViewStylePlain];

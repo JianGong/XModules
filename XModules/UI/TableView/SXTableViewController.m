@@ -12,6 +12,12 @@
 
 @implementation SXTableViewController
 
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
 - (CGFloat)autoInsetsTop
 {
     return self.navigationController.navigationBar.isTranslucent?64:0;
@@ -27,28 +33,17 @@
     return UITableViewStylePlain;
 }
 
-- (void)loadView
-{
-    [super loadView];
-    [self configTableView];
-}
-
 - (SXTableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[SXTableView alloc] initWithFrame:self.view.bounds style:self.tableViewStyle];
+        _tableView = [[SXTableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+        _tableView.autoresizingMask=UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        _tableView.contentInset=UIEdgeInsetsMake([self autoInsetsTop], 0, [self autoInsetsBottom], 0);
+        _tableView.scrollIndicatorInsets=_tableView.contentInset;
         [self.view addSubview:_tableView];
-        [self configTableView];
+        _tableView.delegate=self;
     }
     return _tableView;
-}
-
-- (void)configTableView
-{
-    _tableView.autoresizingMask=UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-    _tableView.contentInset=UIEdgeInsetsMake([self autoInsetsTop], 0, [self autoInsetsBottom], 0);
-    _tableView.scrollIndicatorInsets=_tableView.contentInset;
-    _tableView.delegate=self;
 }
 
 - (void)viewDidLoad
@@ -85,15 +80,28 @@
         self.loadMoreControl.threshold=120;
     }
     
-    [self loadData];
+    [self loadData:nil];
 }
 
-- (void)reloadData
+- (void)reloadData:(void(^)(void))complete;
 {
+    [self.viewModel cancelCurrentLoad];
+    [self loadData:complete];
 }
 
-- (void)loadData
+- (void)loadData:(void(^)(void))complete
 {
+    _refreshView.loading = YES;
+    [self.viewModel loadData:^(id res, NSError *error) {
+        [_refreshView endRefresh];
+        [self reloadTableView];
+        if (!error) {
+            [self updateCacheTime];
+        }
+        if (complete) {
+            complete();
+        }
+    }];
 }
 
 - (void)reloadTableView
@@ -112,21 +120,11 @@
     updateCacheTime(self.viewModel.keyForDiskCache);
 }
 
-- (Class)dataSourceClass
-{
-    return SXTableViewDataSource.class;
-}
-
-- (Class)viewModelClass
-{
-    return SXViewModel.class;
-}
-
 -(SXTableViewDataSource *)dataSource
 {
     if (!_dataSource) {
-        _dataSource = [[self.dataSourceClass alloc] initWithTableView:self.tableView];
-        _dataSource.delegate=self;
+        _dataSource = [[SXTableViewDataSource alloc] initWithTableView:self.tableView];
+        _dataSource.delegate=(id)self.tableView;
     }
     return _dataSource;
 }
@@ -134,7 +132,7 @@
 - (SXViewModel *)viewModel
 {
     if (!_viewModel) {
-        _viewModel=[[self.viewModelClass alloc] init];
+        _viewModel=[[SXViewModel alloc] init];
     }
     return _viewModel;
 }
@@ -154,24 +152,16 @@
     [self.refreshView removeFromSuperview];
     self.refreshView=nil;
     
-    _tableView.delegate=nil;
-    _tableView.dataSource=nil;
-    _tableView=nil;
-    _viewModel=nil;
-    _dataSource=nil;
-    
-    //    [(AppDelegate *)[[UIApplication sharedApplication] delegate] removeObserver:self forKeyPath:kIsLeftPathOpen];
+    self.tableView.delegate=nil;
+    self.tableView.dataSource=nil;
+    self.tableView=nil;
+    self.viewModel=nil;
+    self.dataSource=nil;
 }
 
 - (void)slimeRefreshStartRefresh:(SRRefreshView *)refreshView
 {
-    [self.viewModel loadData:^(id res, NSError *error) {
-        [_refreshView endRefresh];
-        [self reloadTableView];
-        if (!error) {
-            [self updateCacheTime];
-        }
-    }];
+    [self loadData:nil];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
