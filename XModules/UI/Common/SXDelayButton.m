@@ -14,16 +14,18 @@
 @implementation SXDelayButton
 {
     NSTimer *_timer;
-    NSInteger _timeToInval;
+    NSInteger _timeToTotle;
+    NSInteger _timeToPass;
     
-    NSString *_title;
+    _delayButtonTitleBlock _title;
     _delayButtonCompleteBlock _complete;
 }
 
-- (void)setDelay:(NSInteger)time title:(NSString *)title complete:(_delayButtonCompleteBlock)complete;
+- (void)setDelay:(NSInteger)time title:(_delayButtonTitleBlock)title complete:(_delayButtonCompleteBlock)complete
 {
     _title=title;
-    _timeToInval=time;
+    _timeToTotle=time;
+    _timeToPass = 0;
     _complete=complete;
     _timer=[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeGoes) userInfo:nil repeats:YES];
     [self timeGoes];
@@ -33,8 +35,12 @@
 
 - (void)stopSetDelayTitle
 {
+    _timeToPass = _timeToTotle;
     [self applyTitle];
     if (_complete) {
+        [_timer invalidate];
+        _timer=nil;
+        _delaying=NO;
         _complete(NO);
         _complete=nil;
     }
@@ -42,26 +48,26 @@
 
 - (void)applyTitle
 {
-    [_timer invalidate];
-    _timer=nil;
-    [self setTitle:_title forState:UIControlStateNormal];
+    if (_title) {
+        NSString *title = _title(_timeToTotle,_timeToPass);
+        [self setTitle:title forState:UIControlStateNormal];
+    }
+
     [self.titleLabel sx_animatesFake];
-    _title=nil;
-    _delaying=NO;
 }
 
 - (void)timeGoes
 {
-    if (_timeToInval<0) {
-        [self applyTitle];
+    [self applyTitle];
+    if (_timeToPass>=_timeToTotle) {
         if (_complete) {
+            [_timer invalidate];
+            _timer=nil;
+            _delaying=NO;
             _complete(YES);
             _complete=nil;
         }
-    }else{
-        NSString *title = [NSString stringWithFormat:@"%zd\"",_timeToInval];
-        [self setTitle:title forState:UIControlStateNormal];
     }
-    _timeToInval--;
+    _timeToPass++;
 }
 @end

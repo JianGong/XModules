@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "SXNet.h"
+#import "SXDelayButton.h"
 
 @interface AppDelegate ()
 
@@ -23,6 +24,18 @@
     [SXNet get:str pars:nil complete:^(AFHTTPRequestOperation *operation, id responseObject, NSError *error) {
         
     }];
+    
+    static SXDelayButton *a;
+    a= [[SXDelayButton alloc] init];
+
+    
+    [a setDelay:3 title:^NSString *(NSInteger totle, NSInteger pass) {
+        NSLog(@"totle:%zd  pass:%zd",totle,pass);
+        return  @"";
+    } complete:^(BOOL finished) {
+        NSLog(@"complete");
+    }];
+    
     return YES;
 }
 
