@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "XModules"
-  s.version      = "0.6.0"
+  s.version      = "0.6.1"
   s.summary      = "工厂化模组"
   s.description  = <<-DESC
                    *目常用组件
