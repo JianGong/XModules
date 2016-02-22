@@ -1,12 +1,12 @@
 //
-//  SXNet.m
+//  SXService.m
 //  SXClient
 //
 //  Created by iBcker on 14-10-5.
 //  Copyright (c) 2014年 SX. All rights reserved.
 //
 
-#import "SXNet.h"
+#import "SXService.h"
 #import "SXApp.h"
 
 @interface SXNetFormData()
@@ -35,7 +35,7 @@
 
 @end
 
-@implementation SXNet
+@implementation SXService
 
 + (NSString *)buildJsonPath:(NSString *)format,...
 {

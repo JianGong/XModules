@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "SXNet.h"
+#import "SXService.h"
 #import "SXDelayButton.h"
 
 @interface AppDelegate ()
@@ -21,7 +21,7 @@
     char* buff = "hello";
     NSString *str = [[NSString alloc] initWithUTF8String:buff];
     // Override point for customization after application launch.
-    [SXNet get:str pars:nil complete:^(AFHTTPRequestOperation *operation, id responseObject, NSError *error) {
+    [SXService get:str pars:nil complete:^(AFHTTPRequestOperation *operation, id responseObject, NSError *error) {
         
     }];
     

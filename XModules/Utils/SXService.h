@@ -1,5 +1,5 @@
 //
-//  SXNet.h
+//  SXService.h
 //  SXClient
 //
 //  Created by iBcker on 14-10-5.
@@ -30,7 +30,7 @@
 + (instancetype)initWithForm:(NSData *)data name:(NSString *)name fileNmae:(NSString *)fileName mimeType:(NSString *)mimeType;
 @end
 
-@interface SXNet : NSObject
+@interface SXService : NSObject
 
 // rewrite to set api server address
 + (NSString *)ApiServer;
