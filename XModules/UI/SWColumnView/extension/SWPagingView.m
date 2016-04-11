@@ -26,7 +26,7 @@
         unsigned int dlgDidAppearIndex : 1;
         unsigned int dlgDidDisAppearIndex : 1;
     } _flags;
-    id<SWPagingViewDelegate> _delegate;
+    __weak id<SWPagingViewDelegate> _delegate;
 }
 
 //@synthesize delegate=delegate;

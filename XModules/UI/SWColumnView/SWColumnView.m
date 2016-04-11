@@ -40,7 +40,7 @@ NSString * const kCCellIndexKey = @"index";
         unsigned int flagDataLoad : 1;
     } _flags;
     
-    id <SWColumnViewDelegate> _delegate;
+    __weak id <SWColumnViewDelegate> _delegate;
 }
 
 - (id)initWithFrame:(CGRect)frame
